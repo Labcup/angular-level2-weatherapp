@@ -1,3 +1,15 @@
-p {
-  font-family: Lato;
+.row-title {
+    text-align: center;
+}
+
+input.ng-touched.ng-invalid {
+    border: 1px solid red;
+}
+
+input.ng-touched.ng-valid {
+    border: 1px solid greenyellow;
+}
+
+.btn-add {
+    margin-top: 12px;
 }
