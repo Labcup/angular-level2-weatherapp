@@ -6,6 +6,8 @@ import {
 } from '@angular/core';
 import { NgForm } from "@angular/forms";
 import { WeatherService } from "./weather.service";
+import { Subscription } from "rxjs";
+import { WeatherData } from "./weather-data.model";
 
 @Component({
   selector: 'app-root',
@@ -15,31 +17,33 @@ import { WeatherService } from "./weather.service";
 export class AppComponent implements OnInit, OnDestroy {
   @ViewChild('formElement') formElement: NgForm;
 
+  dataSub: Subscription;
+  weatherData: WeatherData[] = [];
   zipcode: string;
-  zipcodes: string[] = [];
 
   constructor(private weatherService: WeatherService) { }
 
-  getZipcodes() {
-    this.zipcodes = this.weatherService.getZipcodes();
-  }
-
   ngOnInit(): void {
-    this.getZipcodes();
+    this.dataSub = this.weatherService.dataChanged.subscribe((data) => {
+      this.weatherData = data;
+    })
+    this.weatherService.getWeatherData();
   }
 
   onSubmit() {
     if (this.zipcode) {
       this.weatherService.addZipcode(this.zipcode);
-      this.getZipcodes();
     }
     this.formElement.resetForm();
   }
 
   removeZipcode(zipcode: string) {
     this.weatherService.removeZipcode(zipcode);
-    this.getZipcodes();
   }
 
-  ngOnDestroy(): void { }
+  ngOnDestroy(): void {
+    if (this.dataSub) {
+      this.dataSub.unsubscribe();
+    }
+  }
 }

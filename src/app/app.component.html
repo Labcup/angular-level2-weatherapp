@@ -24,7 +24,7 @@
                            required>
                     <p style="color: red"
                        *ngIf="inputZipcode.touched && inputZipcode.invalid">
-                        Please enter a valid zipcode!
+                        Please enter a zipcode!
                     </p>
                     <button type="submit"
                             class="btn btn-primary btn-add"
@@ -38,9 +38,9 @@
             <hr>
             <br>
 
-            <div *ngFor="let zip of zipcodes" style="display: flex; align-content: space-between; width: 100%">
-                <p>{{ zip }}</p>
-                <button (click)="removeZipcode(zip)">X</button>
+            <div *ngFor="let data of weatherData">
+                <p>{{ data.name }}</p>
+                <button (click)="removeZipcode(data.zip)" class="btn">X</button>
             </div>
 
         </div>
