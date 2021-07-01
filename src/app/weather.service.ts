@@ -35,7 +35,7 @@ export class WeatherService {
           tempMax: res.main.temp_max,
           tempMin: res.main.temp_min
         }
-        this.weatherData.push(newData);
+        this.weatherData = [newData, ...this.weatherData ]
 
         localStorage.setItem('weatherData', JSON.stringify(this.weatherData));
         this.dataChanged.next(this.weatherData.slice());

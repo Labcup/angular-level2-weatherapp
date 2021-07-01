@@ -18,7 +18,7 @@
                             <input class="form-control"
                                    id="zipcode"
                                    name="zipcode"
-                                   type="text"
+                                   type="number"
                                    #inputZipcode="ngModel"
                                    [(ngModel)]="zipcode"
                                    required>
@@ -39,6 +39,10 @@
 
             <hr>
             <br>
+
+            <div *ngIf="weatherData.length === 0">
+                <p>You have not added any locations yet.</p>
+            </div>
 
             <div class="box"
                  *ngFor="let data of weatherData">
