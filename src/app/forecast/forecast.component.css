@@ -1,0 +1,8 @@
+.box {
+    display: flex;
+    flex-direction: column;
+    align-content: stretch;
+    border: 1px solid lightgray;
+    padding: 16px;
+    margin-bottom: 40px;
+}

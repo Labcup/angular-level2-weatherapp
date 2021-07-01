@@ -1,0 +1,36 @@
+<div style="display: flex; align-items: center; justify-content: center">
+    <button class="btn btn-primary" (click)="goBack()">← Go Back</button>
+</div>
+
+<br>
+<br>
+
+<h5 style="text-align: center">
+    {{ forecastData.name}} ({{ forecastData.zip }}): 5-day forecast
+</h5>
+
+<br>
+
+<div *ngFor="let day of forecastData.data; let i = index">
+    <div class="box">
+        <div style="display: flex;">
+            <h5>{{ getDayName(day.date.getDay()) }}</h5>
+            <p *ngIf="i === 0" style="margin-left: 8px">
+                (Today)
+            </p>
+        </div>
+        <div style="display: flex; justify-content: space-between">
+            <div style="display: flex;justify-content: center; align-items: center; flex-direction: column">
+                <p>Conditions: {{ day.conditions }}</p>
+                <img class="img-responsive"
+                     style="max-height: 75px;"
+                     src="https://www.angulartraining.com/images/weather/{{ getConditionIcon(day.conditions)}}"
+                     alt="{{ day.conditions}}">
+            </div>
+            <div style="display: flex; justify-content: center; flex-direction: column;">
+                <p>High: {{ day.tempMax }} °C</p>
+                <p style="margin: 0">Low: {{ day.tempMin }} °C</p>
+            </div>
+        </div>
+    </div>
+</div>

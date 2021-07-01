@@ -1,0 +1,61 @@
+<div class="box">
+    <form #formElement="ngForm"
+          (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="zipcode" style="margin-bottom: 4px">
+                Zipcode (US):
+            </label>
+            <div style="display: flex; height: 38px">
+                <input class="form-control"
+                       id="zipcode"
+                       name="zipcode"
+                       type="number"
+                       #inputZipcode="ngModel"
+                       [(ngModel)]="zipcode"
+                       required>
+                <button type="submit"
+                        class="btn btn-primary btn-add"
+                        style="margin: 0 0 0 16px; width: 200px;"
+                        [disabled]="formElement.invalid">
+                    Add location
+                </button>
+            </div>
+            <p style="color: red; margin: 0"
+               *ngIf="inputZipcode.touched && inputZipcode.invalid">
+                Please enter a valid US zipcode!
+            </p>
+        </div>
+    </form>
+</div>
+
+<hr>
+<br>
+
+<div *ngIf="weatherData.length === 0">
+    <p>You have not added any locations yet.</p>
+</div>
+
+<div class="box box-data"
+     *ngFor="let data of weatherData"
+     (click)="showForecast(data.zip)">
+    <div style="display: flex; justify-content: space-between">
+        <h5>{{ data.name }} ({{ data.zip }})</h5>
+        <button (click)="removeZipcode(data.zip)"
+                class="btn btn-sm btn-close"></button>
+    </div>
+    <br>
+    <div style="display: flex; justify-content: space-between">
+        <div style="display: flex;justify-content: center; align-items: center; flex-direction: column">
+            <p>Current conditions: {{ data.conditions }}</p>
+            <img class="img-responsive"
+                 style="max-height: 125px;"
+                 src="https://www.angulartraining.com/images/weather/{{ getConditionIcon(data.conditions)}}"
+                 alt="{{ data.conditions}}">
+        </div>
+        <div style="display: flex; flex-direction: column; margin-right: 24px">
+            <p>Current temperature: {{ data.temp }} °C</p>
+            <p>Max. today: {{ data.tempMax }} °C</p>
+            <p style="margin: 0">Min. today: {{ data.tempMin }} °C</p>
+        </div>
+    </div>
+</div>

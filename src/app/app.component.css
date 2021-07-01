@@ -4,28 +4,3 @@
     color: cornflowerblue;
 }
 
-.box {
-    display: flex;
-    flex-direction: column;
-    align-content: stretch;
-    border: 1px solid lightgray;
-    padding: 16px;
-    margin-bottom: 40px;
-}
-
-.box-data:hover {
-    cursor: pointer;
-    background-color: azure;
-}
-
-input.ng-touched.ng-invalid {
-    border: 1px solid red;
-}
-
-input.ng-touched.ng-valid {
-    border: 1px solid greenyellow;
-}
-
-.btn-add {
-    margin-top: 12px;
-}

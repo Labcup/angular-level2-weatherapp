@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { environment } from "../environments/environment";
+import { environment } from "../../environments/environment";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Subject } from "rxjs";
-import { WeatherData } from "./weather-data.model";
-import { ForecastData } from "./forecast-data.model";
+import { WeatherData } from "../models/weather-data.model";
+import { ForecastData } from "../models/forecast-data.model";
 
 @Injectable({
   providedIn: 'root'
