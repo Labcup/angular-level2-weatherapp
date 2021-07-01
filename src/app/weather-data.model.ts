@@ -4,5 +4,6 @@ export class WeatherData {
                 public conditions: string,
                 public temp: number,
                 public tempMax: number,
-                public tempMin: number) { }
+                public tempMin: number,
+                public date: Date) { }
 }

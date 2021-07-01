@@ -5,8 +5,8 @@ import {
   ViewChild
 } from '@angular/core';
 import { NgForm } from "@angular/forms";
-import { WeatherService } from "./weather.service";
 import { Subscription } from "rxjs";
+import { WeatherService } from "./weather.service";
 import { WeatherData } from "./weather-data.model";
 
 @Component({
@@ -41,8 +41,8 @@ export class AppComponent implements OnInit, OnDestroy {
     this.weatherService.removeZipcode(zip);
   }
 
-  getConditionIcon(con: string): string {
-    return this.weatherService.getConditionIcon(con);
+  getConditionIcon(condition: string): string {
+    return this.weatherService.getConditionIcon(condition);
   }
 
   showForecast(zip: string) {

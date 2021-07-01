@@ -23,22 +23,19 @@ export class WeatherService {
   addZipcode(zipcode: string) {
     const weatherData = this.weatherData.find(data => data.zip === zipcode);
     if (!weatherData) {
-      const url = `https://api.openweathermap.org/data/2.5/weather?
-                   zip=${zipcode},us
-                   &units=metric
-                   &appid=${this.key}`;
-
+      const url = `https://api.openweathermap.org/data/2.5/weather?zip=${zipcode},us&units=metric&appid=${this.key}`;
       this.http.get(url).subscribe((response: any) => {
         console.log('addZipcode response:', response)
 
         this.weatherData = [
             new WeatherData(
                 response.name,
-              zipcode,
-              response.weather[0].main,
-              response.main.temp,
-              response.main.temp_max,
-              response.main.temp_min
+                zipcode,
+                response.weather[0].main,
+                response.main.temp,
+                response.main.temp_max,
+                response.main.temp_min,
+                new Date()
           ),
           ...this.weatherData
         ]
@@ -67,12 +64,7 @@ export class WeatherService {
   }
 
   doForecast(zip: string): Promise<ForecastData> {
-    const url = `https://api.openweathermap.org/data/2.5/forecast/daily?
-                 zip=${zip},us
-                 &units=metric
-                 &cnt=5
-                 &appid=${this.key}`;
-
+    const url = `https://api.openweathermap.org/data/2.5/forecast/daily?zip=${zip},us&units=metric&cnt=5&appid=${this.key}`;
     return new Promise<ForecastData>((resolve, reject) => {
       this.http.get(url).subscribe((response: any) => {
         console.log('doForecast response:', response)
@@ -82,10 +74,11 @@ export class WeatherService {
           const weatherData = new WeatherData(
               response.city.name,
               zip,
-              dayData["weather"][0].main,
-              dayData["temp"].day,
-              dayData["temp"].max,
-              dayData["temp"].min
+              dayData.weather[0].main,
+              dayData.temp.day,
+              dayData.temp.max,
+              dayData.temp.min,
+              new Date(dayData.dt * 1000)
           );
           forecastData.data.push(weatherData);
         }
