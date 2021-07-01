@@ -2,13 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ee020805-99db-4a0b-a659-a4b7e022a687" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/app/weather-data.model.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/app.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.component.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/weather.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/weather.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/environments/environment.prod.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/environments/environment.prod.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/environments/environment.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/environments/environment.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,7 +87,9 @@
       <workItem from="1625060069644" duration="522000" />
       <workItem from="1625060651658" duration="814000" />
       <workItem from="1625061500999" duration="456000" />
-      <workItem from="1625062030957" duration="1718000" />
+      <workItem from="1625062030957" duration="1790000" />
+      <workItem from="1625131519861" duration="2470000" />
+      <workItem from="1625134075920" duration="1006000" />
     </task>
     <servers />
   </component>

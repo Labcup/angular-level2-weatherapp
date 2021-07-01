@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" style="width: 800px">
 
     <div class="row row-title">
         <h3>My Weather App</h3>
@@ -9,38 +9,58 @@
     <div class="row">
         <div class="col-xs-12">
 
-            <form #formElement="ngForm"
-                  (ngSubmit)="onSubmit()">
-                <div class="form-group">
-                    <label for="zipcode">
-                        Enter a zipcode:
-                    </label>
-                    <input class="form-control"
-                           id="zipcode"
-                           name="zipcode"
-                           type="text"
-                           #inputZipcode="ngModel"
-                           [(ngModel)]="zipcode"
-                           required>
-                    <p style="color: red"
-                       *ngIf="inputZipcode.touched && inputZipcode.invalid">
-                        Please enter a zipcode!
-                    </p>
-                    <button type="submit"
-                            class="btn btn-primary btn-add"
-                            [disabled]="formElement.invalid">
-                        Add
-                    </button>
+            <div class="box">
+                <form #formElement="ngForm"
+                      (ngSubmit)="onSubmit()">
+                    <div class="form-group">
+                        <label for="zipcode">
+                            Zipcode (US):
+                        </label>
+                        <div style="display: flex; height: 38px">
+                            <input class="form-control"
+                                   id="zipcode"
+                                   name="zipcode"
+                                   type="text"
+                                   #inputZipcode="ngModel"
+                                   [(ngModel)]="zipcode"
+                                   required>
+                            <button type="submit"
+                                    class="btn btn-primary btn-add"
+                                    style="margin: 0 0 0 16px; width: 200px;"
+                                    [disabled]="formElement.invalid">
+                                Add location
+                            </button>
+                        </div>
+                        <p style="color: red; margin: 0"
+                           *ngIf="inputZipcode.touched && inputZipcode.invalid">
+                            Please enter a valid US zipcode!
+                        </p>
+                    </div>
+                </form>
+            </div>
+
+            <div class="box"
+                 *ngFor="let data of weatherData">
+                <div style="display: flex; justify-content: space-between">
+                    <h5>{{ data.name }} ({{ data.zip }})</h5>
+                    <button (click)="removeZipcode(data.zip)"
+                            class="btn btn-sm btn-outline-dark">X</button>
                 </div>
-            </form>
-
-            <br>
-            <hr>
-            <br>
-
-            <div *ngFor="let data of weatherData">
-                <p>{{ data.name }}</p>
-                <button (click)="removeZipcode(data.zip)" class="btn">X</button>
+                <br>
+                <div style="display: flex; justify-content: space-between">
+                    <div style="display: flex; justify-content: center; align-items: center; flex-direction: column">
+                        <p>Current conditions: {{ data.conditions }}</p>
+                        <img class="img-responsive"
+                             style="max-height: 125px;"
+                             src="https://www.angulartraining.com/images/weather/{{ getConditionIcon(data.conditions)}}"
+                             alt="{{ data.conditions}}">
+                    </div>
+                    <div style="display: flex; justify-content: center; flex-direction: column">
+                        <p>Current temperature: {{ data.temp }} °C</p>
+                        <p>Max. today: {{ data.tempMax }} °C</p>
+                        <p style="margin: 0">Min. today: {{ data.tempMin }} °C</p>
+                    </div>
+                </div>
             </div>
 
         </div>

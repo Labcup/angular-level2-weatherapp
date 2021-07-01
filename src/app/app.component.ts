@@ -41,6 +41,10 @@ export class AppComponent implements OnInit, OnDestroy {
     this.weatherService.removeZipcode(zipcode);
   }
 
+  getConditionIcon(cond: string): string {
+    return this.weatherService.getConditionIcon(cond);
+  }
+
   ngOnDestroy(): void {
     if (this.dataSub) {
       this.dataSub.unsubscribe();

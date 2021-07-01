@@ -1,4 +1,4 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import { environment } from "../environments/environment";
 import { Subject } from "rxjs";
@@ -22,7 +22,7 @@ export class WeatherService {
     const weatherData = this.weatherData.find(wd => wd.zip === zipcode);
     if (!weatherData) {
       const key = environment.openWeatherApiKey;
-      const url = `https://api.openweathermap.org/data/2.5/weather?zip=${zipcode},us&appid=${key}`;
+      const url = `https://api.openweathermap.org/data/2.5/weather?zip=${zipcode},us&units=metric&appid=${key}`;
 
       this.http.get(url).subscribe((res: any) => {
         console.log('get weather res', res)
@@ -30,7 +30,7 @@ export class WeatherService {
         const newData: WeatherData = {
           name: res.name,
           zip: zipcode,
-          conditions: res.weather.main,
+          conditions: res.weather[0].main,
           temp: res.main.temp,
           tempMax: res.main.temp_max,
           tempMin: res.main.temp_min
@@ -42,7 +42,7 @@ export class WeatherService {
       }, (e: HttpErrorResponse) => {
         console.log('get weather error', e);
         if (e.status === 404) {
-          alert("The zipcode you entered does not exist.");
+          alert("You entered an invalid US zipcode.");
         } else {
           alert("An unknown error occurred.");
         }
@@ -57,6 +57,23 @@ export class WeatherService {
       this.weatherData.splice(i, 1);
       localStorage.setItem('weatherData', JSON.stringify(this.weatherData));
       this.dataChanged.next(this.weatherData.slice());
+    }
+  }
+
+  getConditionIcon(cond: string): string {
+    switch (cond) {
+      case 'Rain':
+        return 'rain.png';
+      case 'Clouds':
+        return 'clouds.png';
+      case 'Mist':
+        return 'clouds.png';
+      case 'Snow':
+        return 'snow.png';
+      case 'Sunny':
+        return 'sun.png';
+      case 'Clear':
+        return 'sun.png';
     }
   }
 }
