@@ -1,5 +1,7 @@
 .row-title {
     text-align: center;
+    margin: 16px 0 32px 0;
+    color: cornflowerblue;
 }
 
 .box {
@@ -8,7 +10,7 @@
     align-content: stretch;
     border: 1px solid lightgray;
     padding: 16px;
-    margin-bottom: 32px;
+    margin-bottom: 40px;
 }
 
 input.ng-touched.ng-invalid {
