@@ -44,8 +44,9 @@
                 <p>You have not added any locations yet.</p>
             </div>
 
-            <div class="box"
-                 *ngFor="let data of weatherData">
+            <div class="box box-data"
+                 *ngFor="let data of weatherData"
+                 (click)="showForecast(data.zip)">
                 <div style="display: flex; justify-content: space-between">
                     <h5>{{ data.name }} ({{ data.zip }})</h5>
                     <button (click)="removeZipcode(data.zip)"
@@ -53,14 +54,14 @@
                 </div>
                 <br>
                 <div style="display: flex; justify-content: space-between">
-                    <div style="display: flex; justify-content: center; align-items: center; flex-direction: column">
+                    <div style="display: flex;justify-content: center; align-items: center; flex-direction: column">
                         <p>Current conditions: {{ data.conditions }}</p>
                         <img class="img-responsive"
                              style="max-height: 125px;"
                              src="https://www.angulartraining.com/images/weather/{{ getConditionIcon(data.conditions)}}"
                              alt="{{ data.conditions}}">
                     </div>
-                    <div style="display: flex; justify-content: center; flex-direction: column; margin-right: 48px">
+                    <div style="display: flex; justify-content: center; flex-direction: column; margin-right: 32px">
                         <p>Current temperature: {{ data.temp }} °C</p>
                         <p>Max. today: {{ data.tempMax }} °C</p>
                         <p style="margin: 0">Min. today: {{ data.tempMin }} °C</p>

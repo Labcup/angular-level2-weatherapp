@@ -13,6 +13,11 @@
     margin-bottom: 40px;
 }
 
+.box-data:hover {
+    cursor: pointer;
+    background-color: azure;
+}
+
 input.ng-touched.ng-invalid {
     border: 1px solid red;
 }

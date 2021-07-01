@@ -37,12 +37,20 @@ export class AppComponent implements OnInit, OnDestroy {
     this.formElement.resetForm();
   }
 
-  removeZipcode(zipcode: string) {
-    this.weatherService.removeZipcode(zipcode);
+  removeZipcode(zip: string) {
+    this.weatherService.removeZipcode(zip);
   }
 
-  getConditionIcon(cond: string): string {
-    return this.weatherService.getConditionIcon(cond);
+  getConditionIcon(con: string): string {
+    return this.weatherService.getConditionIcon(con);
+  }
+
+  showForecast(zip: string) {
+    // navigate to forecast page
+
+    this.weatherService.doForecast(zip).then((data) => {
+      console.log('forecastData:', data);
+    });
   }
 
   ngOnDestroy(): void {
