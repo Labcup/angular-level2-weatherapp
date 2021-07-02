@@ -10,27 +10,34 @@ import { ForecastData } from "../models/forecast-data.model";
 })
 export class WeatherService {
   private key = environment.openWeatherApiKey;
-  private weatherData: WeatherData[] = [];
+  private weatherData: WeatherData[];
   public dataChanged = new Subject<WeatherData[]>();
 
   constructor(private http: HttpClient) { }
 
   getWeatherData() {
     this.weatherData = JSON.parse(localStorage.getItem('weatherData'));
-    this.dataChanged.next(this.weatherData.slice());
+    if (this.weatherData) {
+      this.dataChanged.next(this.weatherData.slice());
+    } else {
+      this.weatherData = [];
+    }
   }
 
-  addZipcode(zipcode: string) {
-    const weatherData = this.weatherData.find(data => data.zip === zipcode);
+  addZipcode(zip: string) {
+    let weatherData = null;
+    if (this.weatherData) {
+      weatherData = this.weatherData.find(data => data.zip === zip)
+    }
     if (!weatherData) {
-      const url = `https://api.openweathermap.org/data/2.5/weather?zip=${zipcode},us&units=metric&appid=${this.key}`;
+      const url = `https://api.openweathermap.org/data/2.5/weather?zip=${zip},us&units=metric&appid=${this.key}`;
       this.http.get(url).subscribe((response: any) => {
         console.log('addZipcode response:', response)
 
         this.weatherData = [
             new WeatherData(
                 response.name,
-                zipcode,
+                zip,
                 response.weather[0].main,
                 response.main.temp,
                 response.main.temp_max,
@@ -54,7 +61,10 @@ export class WeatherService {
   }
 
   removeZipcode(zip: string) {
-    const weatherData = this.weatherData.find(data => data.zip === zip);
+    let weatherData = null;
+    if (this.weatherData) {
+      weatherData = this.weatherData.find(data => data.zip === zip)
+    }
     if (weatherData) {
       const i = this.weatherData.indexOf(weatherData);
       this.weatherData.splice(i, 1);
