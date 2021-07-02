@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ee020805-99db-4a0b-a659-a4b7e022a687" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/app.component.spec.ts" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/forecast/forecast.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/forecast/forecast.component.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
